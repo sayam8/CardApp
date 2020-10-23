@@ -9,14 +9,22 @@
 import SwiftUI
 
 struct ContentView: View {
+    var cards = ["かばん": "bag",
+                 "自動車": "car",
+                 "誕生日": "birthday",
+                 "ペン": "pen"]
+    @State var japanese = "かばん"
+    @State var isJapanese = true
     var body: some View {
         VStack {
-            Text("Hello, World!")
+            Text(isJapanese ? japanese : cards[japanese]!)
             HStack {
-                Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/) {
+                Button(action: {self.isJapanese.toggle()}) {
                     Text(/*@START_MENU_TOKEN@*/"裏返す"/*@END_MENU_TOKEN@*/)
                 }
-                Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/) {
+                Button(action: {self.isJapanese = true
+                    self.japanese = self.cards.randomElement()!.key
+                }) {
                     Text(/*@START_MENU_TOKEN@*/"次へ"/*@END_MENU_TOKEN@*/)
                 }
             }
